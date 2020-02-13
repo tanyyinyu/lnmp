@@ -1,0 +1,44 @@
+#database
+
+mysql> create database ab;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> grant all on ab.* to 'ab'@'localhost' identified by '123456';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> use ab
+Database changed
+mysql> create table MyGuests;
+ERROR 1113 (42000): A table must have at least 1 column
+mysql> create table MyGuests (id int, firstname varchar(20), lastname varchar(20));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into MyGuests value(1, 'tany', 'tan');
+
+
+<?php
+$servername = "localhost";
+$username = "ab";
+$password = "123456";
+$dbname = "ab";
+ 
+// 创建连接
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("连接失败: " . $conn->connect_error);
+} 
+ 
+$sql = "SELECT id, firstname, lastname FROM MyGuests";
+$result = $conn->query($sql);
+ 
+if ($result->num_rows > 0) {
+    // 输出数据
+    while($row = $result->fetch_assoc()) {
+        echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
+    }
+} else {
+    echo "0 结果";
+}
+$conn->close();
+?>

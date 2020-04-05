@@ -1,3 +1,8 @@
+优化nginx php-pm数 mysql配置； 普通设置 mysql-small
+ab html              30345      28200
+ab php-helloworld    10132     10294
+ab php-mysql取数据     4807     4321
+
 [root@iZwz9awk9qzxr4x59c8lk9Z test.com]# ab -n 100000 -c 100 http://localhost/
 This is ApacheBench, Version 2.3 <$Revision: 1430300 $>
 Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/

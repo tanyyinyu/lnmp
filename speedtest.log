@@ -1,0 +1,234 @@
+[root@iZwz9awk9qzxr4x59c8lk9Z test.com]# ab -n 100000 -c 100 http://localhost/
+This is ApacheBench, Version 2.3 <$Revision: 1430300 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking localhost (be patient)
+Completed 10000 requests
+Completed 20000 requests
+Completed 30000 requests
+Completed 40000 requests
+Completed 50000 requests
+Completed 60000 requests
+Completed 70000 requests
+Completed 80000 requests
+Completed 90000 requests
+Completed 100000 requests
+Finished 100000 requests
+
+
+Server Software:        nginx/1.16.1
+Server Hostname:        localhost
+Server Port:            80
+
+Document Path:          /
+Document Length:        612 bytes
+
+Concurrency Level:      100
+Time taken for tests:   3.295 seconds
+Complete requests:      100000
+Failed requests:        0
+Write errors:           0
+Total transferred:      84500000 bytes
+HTML transferred:       61200000 bytes
+Requests per second:    30345.93 [#/sec] (mean)
+Time per request:       3.295 [ms] (mean)
+Time per request:       0.033 [ms] (mean, across all concurrent requests)
+Transfer rate:          25041.32 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   0.5      1      21
+Processing:     0    2   1.4      2      46
+Waiting:        0    2   1.4      2      46
+Total:          0    3   1.4      3      46
+
+Percentage of the requests served within a certain time (ms)
+  50%      3
+  66%      3
+  75%      3
+  80%      3
+  90%      4
+  95%      4
+  98%      5
+  99%      6
+ 100%     46 (longest request)
+[root@iZwz9awk9qzxr4x59c8lk9Z test.com]# curl localhost
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+[root@iZwz9awk9qzxr4x59c8lk9Z test.com]# ab -n 100000 -c 100 http://www.test.com/
+This is ApacheBench, Version 2.3 <$Revision: 1430300 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking www.test.com (be patient)
+Completed 10000 requests
+Completed 20000 requests
+Completed 30000 requests
+Completed 40000 requests
+Completed 50000 requests
+Completed 60000 requests
+Completed 70000 requests
+Completed 80000 requests
+Completed 90000 requests
+Completed 100000 requests
+Finished 100000 requests
+
+
+Server Software:        nginx/1.16.1
+Server Hostname:        www.test.com
+Server Port:            80
+
+Document Path:          /
+Document Length:        12 bytes
+
+Concurrency Level:      100
+Time taken for tests:   9.869 seconds
+Complete requests:      100000
+Failed requests:        0
+Write errors:           0
+Total transferred:      17400000 bytes
+HTML transferred:       1200000 bytes
+Requests per second:    10132.88 [#/sec] (mean)
+Time per request:       9.869 [ms] (mean)
+Time per request:       0.099 [ms] (mean, across all concurrent requests)
+Transfer rate:          1721.80 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.5      0       3
+Processing:     1    9   1.8     10      29
+Waiting:        0    9   1.9      9      29
+Total:          2   10   1.7     10      30
+
+Percentage of the requests served within a certain time (ms)
+  50%     10
+  66%     10
+  75%     11
+  80%     11
+  90%     12
+  95%     12
+  98%     14
+  99%     15
+ 100%     30 (longest request)
+[root@iZwz9awk9qzxr4x59c8lk9Z test.com]# curl www.test.com
+Hello World![root@iZwz9awk9qzxr4x59c8lk9Z test.com]# cat index.php 
+<?php
+// 这是单行注释
+
+# 这也是单行注释
+
+/*
+这是多行注释
+多行注释
+多行注释
+*/
+
+echo "Hello World!";
+?>
+[root@iZwz9awk9qzxr4x59c8lk9Z test.com]# ab -n 100000 -c 100 http://www.test.com/ab.php
+This is ApacheBench, Version 2.3 <$Revision: 1430300 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking www.test.com (be patient)
+Completed 10000 requests
+Completed 20000 requests
+Completed 30000 requests
+Completed 40000 requests
+Completed 50000 requests
+Completed 60000 requests
+Completed 70000 requests
+Completed 80000 requests
+Completed 90000 requests
+Completed 100000 requests
+Finished 100000 requests
+
+
+Server Software:        nginx/1.16.1
+Server Hostname:        www.test.com
+Server Port:            80
+
+Document Path:          /ab.php
+Document Length:        26 bytes
+
+Concurrency Level:      100
+Time taken for tests:   20.801 seconds
+Complete requests:      100000
+Failed requests:        0
+Write errors:           0
+Total transferred:      18800000 bytes
+HTML transferred:       2600000 bytes
+Requests per second:    4807.54 [#/sec] (mean)
+Time per request:       20.801 [ms] (mean)
+Time per request:       0.208 [ms] (mean, across all concurrent requests)
+Transfer rate:          882.64 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.4      0      13
+Processing:     3   21   3.6     20     112
+Waiting:        1   20   3.6     20     112
+Total:          3   21   3.5     21     113
+
+Percentage of the requests served within a certain time (ms)
+  50%     21
+  66%     21
+  75%     22
+  80%     22
+  90%     23
+  95%     25
+  98%     30
+  99%     33
+ 100%    113 (longest request)
+[root@iZwz9awk9qzxr4x59c8lk9Z test.com]# curl www.test.com/ab.php
+id: 1 - Name: tany tan<br>[root@iZwz9awk9qzxr4x59c8lk9Z test.com]# cat ab.php
+<?php
+$servername = "localhost";
+$username = "ab";
+$password = "123456";
+$dbname = "ab";
+ 
+// 创建连接
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("连接失败: " . $conn->connect_error);
+} 
+ 
+$sql = "SELECT id, firstname, lastname FROM MyGuests";
+$result = $conn->query($sql);
+ 
+if ($result->num_rows > 0) {
+    // 输出数据
+    while($row = $result->fetch_assoc()) {
+        echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
+    }
+} else {
+    echo "0 结果";
+}
+$conn->close();
+?>
